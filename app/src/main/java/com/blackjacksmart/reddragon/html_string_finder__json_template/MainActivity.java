@@ -42,6 +42,9 @@ import java.net.URL;
  Manually parsing JSON object data...with default android - java library
 
  {"movies": [{"movie": "Avengers","year": 2012}]}
+
+ ---------------- Added Bonus---- a potential web crawler to find string for web pages..
+ or can be used to clone a web page
  **/
 
 public class MainActivity extends AppCompatActivity {
