@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -44,7 +45,11 @@ public class MainActivity extends AppCompatActivity {
 
     TextView responseTextView;
     TextView parseTextView;
+    TextView searchURLText;
     Button hitButton;
+    Button searchButton;
+    EditText enterSearchText;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +59,11 @@ public class MainActivity extends AppCompatActivity {
         responseTextView = (TextView) findViewById(R.id.response_text_view);
         hitButton = (Button) findViewById(R.id.btnHit);
         parseTextView = (TextView) findViewById(R.id.parse_text_view);
+        searchButton = (Button) findViewById(R.id.search_btn);
+        enterSearchText = (EditText) findViewById(R.id.enter_url_et);
+        searchURLText = (TextView) findViewById(R.id.enter_url_tv);
+
+//        findString("test","this is a test buffer test test test");
 
         hitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
                         "http://jsonparsing.parseapp.com/jsonData/moviesDemoItem.txt");
             }
         });
+
     }
 
 
@@ -69,6 +80,8 @@ public class MainActivity extends AppCompatActivity {
 
         private StringBuffer buffer;
         private String finalJson;
+
+        public ASTask(){}
 
         @Override
         protected String doInBackground(String... params) {
@@ -87,7 +100,9 @@ public class MainActivity extends AppCompatActivity {
 
                 String line = "";
 
-                while ((line = reader.readLine()) != null) { buffer.append(line); }
+                while ((line = reader.readLine()) != null) {
+                    buffer.append(line);
+                }
 
                 finalJson = buffer.toString();
 
@@ -116,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-        responseTextView.setText(result);
+            responseTextView.setText(result);
 
             try {
                 JSONData();
@@ -136,10 +151,11 @@ public class MainActivity extends AppCompatActivity {
             String movieName = finalObject.getString("movie");
             int year = finalObject.getInt("year");
 
-            parseTextView.setText(movieName + " - " +year);
+            parseTextView.setText(movieName + " - " + year);
 
-       //-------------------------------------------------------------------------
-            /** For multiple JSON data  **/
+            //-------------------------------------------------------------------------
+                            /** For multiple JSON data  **/                          //
+            //-------------------------------------------------------------------------
             // for( int = 0; i < parentArray.length(); i++ ){
             //     JSONObject finalObject = parentArray.getJSONObject(i);
             //
@@ -148,10 +164,28 @@ public class MainActivity extends AppCompatActivity {
             //      finalBufferData.append(movieName + "  -  " + year);
             //
             // }
-      //---------------------------------------------------------------------------
+            //---------------------------------------------------------------------------
+        }
+    }
+
+    /** Method Tested on repl.it   it works correctly **/
+
+    public void findString(String search, String buffer) {
+        int searchSize = search.length();
+        int bufferSize = buffer.length();
+        int count = 0;
+
+        for (int i = 0; i < (bufferSize - searchSize); i++) {
+            if (buffer.substring(i,(i + searchSize)).equals(search)) {
+                count++;
+            }
 
         }
 
     }
 
 }
+
+
+
+

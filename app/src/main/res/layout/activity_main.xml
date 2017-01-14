@@ -13,13 +13,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btnHit"
-        android:text="Hit Button"
+        android:text="JSON Button"
         />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Raw JSON Data"
+        android:text="RAW JSON DATA"
         android:textAlignment="center"
         android:id="@+id/raw_json_tv"
         android:textColor="@color/colorPrimary"
@@ -34,7 +34,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Parsed JSON Data"
+        android:text="PARSED JSON DATA"
         android:textAlignment="center"
         android:textColor="@color/colorPrimary"
         android:id="@+id/parsed_json_tv"
@@ -46,4 +46,30 @@
         android:text="AFTER JSON FORMAT"
         android:id="@+id/parse_text_view"
         android:layout_below="@id/parsed_json_tv"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/search_btn"
+        android:text="Search Button"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ENTER NEW URL"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:id="@+id/enter_url_tv"
+        android:layout_below="@+id/search_btn"
+        android:layout_gravity="center_horizontal"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="enter url"
+        android:textAlignment="center"
+        android:id="@+id/enter_url_et"
+        android:layout_below="@+id/enter_url_tv"
+        android:layout_gravity="center_horizontal"/>
 </LinearLayout>
