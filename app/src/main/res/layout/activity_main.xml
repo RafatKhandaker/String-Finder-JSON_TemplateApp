@@ -130,7 +130,10 @@
         android:layout_below="@+id/count_tv"
         android:scrollbars="vertical"
         android:scrollbarAlwaysDrawVerticalTrack="true"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal"
+        android:selectAllOnFocus="true"
+        android:textIsSelectable="true"
+        />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

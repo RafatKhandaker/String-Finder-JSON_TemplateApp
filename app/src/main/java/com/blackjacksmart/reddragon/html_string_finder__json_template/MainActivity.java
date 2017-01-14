@@ -102,13 +102,18 @@ public class MainActivity extends AppCompatActivity {
 
                 count = 0;
 
-                if(!enterSearchURL.getText().equals("")) {
+                if(!enterSearchURL.getText().toString().equals("") &&
+                      !enterStringVal.getText().toString().equals("")) {
                     async2.execute(
                             enterSearchURL.getText().toString()
                     );
                 }else {
                     enterSearchURL.setTextColor(Color.RED);
+                    enterStringVal.setTextColor(Color.RED);
+
                     enterSearchURL.setText("Value cannot be null");
+                    enterStringVal.setText("Value cannot be null");
+
                     searchButton.setClickable(false);
                     try {
                         thread.sleep(1000);

@@ -114,7 +114,8 @@
         android:textColor="@color/colorPrimary"
         android:id="@+id/locate_string_tv"
         android:layout_below="@+id/count_tv"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal"
+        />
 
     <TextView
         android:layout_width="match_parent"
@@ -125,7 +126,9 @@
         android:layout_below="@id/enter_string_et"
         android:scrollbars="vertical"
         android:scrollbarAlwaysDrawVerticalTrack="true"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal"
+        android:selectAllOnFocus="true"
+        android:textIsSelectable="true"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
