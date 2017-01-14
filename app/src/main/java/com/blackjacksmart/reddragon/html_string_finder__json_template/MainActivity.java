@@ -264,10 +264,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
+        
         String searchTxt = enterStringVal.getText().toString();
-//        displayCount.setText(
-//                findString(searchTxt,result)
-//        );
+        int stringCount = findString(searchTxt, result);
+
+        displayCount.setText(stringCount);
         rawHTMLData.setText(result);
     }
 

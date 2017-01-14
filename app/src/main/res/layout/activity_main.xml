@@ -67,7 +67,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="enter url"
+        android:hint="enter url, try: https://google.com"
         android:textAlignment="center"
         android:id="@+id/enter_url_et"
         android:layout_below="@+id/enter_url_tv"
@@ -86,7 +86,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="enter search string"
+        android:hint="enter search string, try : google"
         android:textAlignment="center"
         android:id="@+id/enter_string_et"
         android:layout_below="@+id/find_string_tv"
