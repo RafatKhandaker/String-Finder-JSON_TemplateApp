@@ -85,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 new ASyncTask1().execute(
                         "http://jsonparsing.parseapp.com/jsonData/moviesDemoItem.txt"
-
                 );
             }
         });
@@ -93,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
         searchButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
                 new ASyncTask2().execute(
                         enterSearchURL.getText().toString()
                 );
