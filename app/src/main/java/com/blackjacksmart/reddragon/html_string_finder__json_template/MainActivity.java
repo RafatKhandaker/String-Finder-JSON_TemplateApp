@@ -123,7 +123,44 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-//----------------------------------find String method---------------------------------------------
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        String responseTxt = responseTextView.getText().toString();
+        String parseTxt = parseTextView.getText().toString();
+        String countTxt = displayCount.getText().toString();
+        String rawHTMLTxt = rawHTMLData.getText().toString();
+
+        outState.putString("response_text", responseTxt);
+        outState.putString("parse_text", parseTxt);
+        outState.putString("count_text", countTxt);
+        outState.putString("RawHtml_text", rawHTMLTxt);
+
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        responseTextView.setText(savedInstanceState
+                .get("response_text")
+                .toString());
+
+        parseTextView.setText(savedInstanceState
+                .get("parse_text")
+                .toString());
+
+        displayCount.setText(savedInstanceState
+                .get("count_text")
+                .toString());
+
+        rawHTMLData.setText(savedInstanceState
+                .get("RawHtml_text")
+                .toString());
+    }
+
+//-----------------------------------find String method---------------------------------------------
     /** Method Tested on repl.it   it works correctly **/
 
     public int findString(String search, String buffer) {

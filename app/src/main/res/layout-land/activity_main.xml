@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
@@ -11,44 +11,43 @@
     android:orientation="vertical">
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="RAW JSON DATA"
-        android:textAlignment="center"
+        android:text="RAW JSON DATA: "
         android:id="@+id/raw_json_tv"
         android:textColor="@color/colorPrimary"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="left"
+        />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="JSON SERVER DATA"
         android:id="@+id/response_text_view"
-        android:layout_below="@+id/raw_json_tv"/>
+        android:layout_toRightOf="@id/raw_json_tv"/>
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="PARSED JSON DATA"
-        android:textAlignment="center"
+        android:text="PARSED JSON DATA: "
         android:textColor="@color/colorPrimary"
         android:id="@+id/parsed_json_tv"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_below="@id/raw_json_tv"
+        android:layout_gravity="left"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="AFTER JSON FORMAT"
         android:id="@+id/parse_text_view"
-        android:layout_below="@id/parsed_json_tv"/>
+        android:layout_below="@id/response_text_view"
+        android:layout_toRightOf="@id/parsed_json_tv"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="125dp"
+        android:layout_marginLeft="500dp"
         android:id="@+id/btnHit"
         android:text="JSON Button"
-        android:layout_below="@+id/parse_text_view"
-        android:gravity="center_horizontal"
         />
 
 
@@ -58,7 +57,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="ENTER NEW URL"
-        android:textAlignment="center"
         android:textColor="@color/colorPrimary"
         android:id="@+id/enter_url_tv"
         android:layout_below="@+id/btnHit"
@@ -77,7 +75,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Find String Value in URL HTML Data: "
-        android:textAlignment="center"
         android:textColor="@color/colorPrimary"
         android:id="@+id/find_string_tv"
         android:layout_below="@+id/enter_url_et"
@@ -93,33 +90,30 @@
         android:layout_gravity="center_horizontal"/>
 
     <TextView
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="count: "
-    android:textAlignment="center"
     android:textColor="@color/colorPrimary"
     android:id="@+id/count_tv"
     android:layout_below="@+id/enter_string_et"
     android:layout_gravity="center_horizontal"/>
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
+        android:id="@+id/display_count_tv"
         android:textColor="@color/colorAccent"
         android:textSize="15dp"
-        android:id="@+id/display_count_tv"
-        android:layout_below="@+id/count_tv"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_toRightOf="@id/count_tv"
+        android:layout_below="@id/enter_string_et"/>
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="PULL HTML PAGE: "
-        android:textAlignment="center"
         android:textColor="@color/colorPrimary"
         android:id="@+id/locate_string_tv"
-        android:layout_below="@+id/display_count_tv"
+        android:layout_below="@+id/count_tv"
         android:layout_gravity="center_horizontal"/>
 
     <TextView
@@ -127,7 +121,8 @@
         android:layout_height="120dp"
         android:textAlignment="center"
         android:id="@+id/display_locate_tv"
-        android:layout_below="@+id/count_tv"
+        android:layout_toRightOf="@id/search_btn"
+        android:layout_below="@id/enter_string_et"
         android:scrollbars="vertical"
         android:scrollbarAlwaysDrawVerticalTrack="true"
         android:layout_gravity="center_horizontal"/>
@@ -135,10 +130,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/search_btn"
-        android:layout_marginLeft="120dp"
         android:text="Search Button"
-        android:gravity="center_horizontal"
-        android:layout_below="@+id/display_locate_tv"
+        android:layout_below="@+id/locate_string_tv"
         />
 
-</LinearLayout>
+</RelativeLayout>
