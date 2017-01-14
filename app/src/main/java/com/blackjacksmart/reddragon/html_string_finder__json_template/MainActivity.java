@@ -75,6 +75,24 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+//----------------------------------find String method---------------------------------------------
+    /** Method Tested on repl.it   it works correctly **/
+
+    public void findString(String search, String buffer) {
+        int searchSize = search.length();
+        int bufferSize = buffer.length();
+        int count = 0;
+
+        for (int i = 0; i < (bufferSize - searchSize); i++) {
+            if (buffer.substring(i,(i + searchSize)).equals(search)) {
+                count++;
+            }
+
+        }
+
+    }
+
+//--------------------------ASYNC TASK Running to pull and parse JSON Data -------------------------
 
     public class ASTask extends AsyncTask<String, String, String> {
 
@@ -167,22 +185,7 @@ public class MainActivity extends AppCompatActivity {
             //---------------------------------------------------------------------------
         }
     }
-
-    /** Method Tested on repl.it   it works correctly **/
-
-    public void findString(String search, String buffer) {
-        int searchSize = search.length();
-        int bufferSize = buffer.length();
-        int count = 0;
-
-        for (int i = 0; i < (bufferSize - searchSize); i++) {
-            if (buffer.substring(i,(i + searchSize)).equals(search)) {
-                count++;
-            }
-
-        }
-
-    }
+//--------------------------------------------------------------------------------------------------
 
 }
 
