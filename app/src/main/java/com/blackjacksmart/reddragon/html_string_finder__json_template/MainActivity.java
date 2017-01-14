@@ -3,6 +3,7 @@ package com.blackjacksmart.reddragon.html_string_finder__json_template;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,7 +24,7 @@ import java.net.URL;
 /**                             LEARNING OBJECTIVE:
  *
  Manually pulling http data from a server: creating and handling the connection;
- reatrieving, buffering and reading the input stream line by line and pulling to view;
+ retrieving, buffering and reading the input stream line by line and pulling to view;
  rules for thread: Main thread is UI, does not allow data from background thread to
  change UI thread
 
@@ -46,9 +47,17 @@ public class MainActivity extends AppCompatActivity {
     TextView responseTextView;
     TextView parseTextView;
     TextView searchURLText;
+    TextView displayCount;
+    TextView locateString;
+
     Button hitButton;
     Button searchButton;
-    EditText enterSearchText;
+
+    EditText enterSearchURL;
+    EditText enterStringVal;
+
+    int count = 0;
+    String stringPosition;
 
 
     @Override
@@ -57,11 +66,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         responseTextView = (TextView) findViewById(R.id.response_text_view);
-        hitButton = (Button) findViewById(R.id.btnHit);
         parseTextView = (TextView) findViewById(R.id.parse_text_view);
-        searchButton = (Button) findViewById(R.id.search_btn);
-        enterSearchText = (EditText) findViewById(R.id.enter_url_et);
         searchURLText = (TextView) findViewById(R.id.enter_url_tv);
+        displayCount = (TextView) findViewById(R.id.display_count_tv);
+        locateString = (TextView) findViewById(R.id.display_locate_tv);
+
+        hitButton = (Button) findViewById(R.id.btnHit);
+        searchButton = (Button) findViewById(R.id.search_btn);
+
+        enterSearchURL = (EditText) findViewById(R.id.enter_url_et);
+        enterStringVal =(EditText) findViewById(R.id.enter_string_et);
+
 
 //        findString("test","this is a test buffer test test test");
 
@@ -69,7 +84,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 new ASyncTask1().execute(
-                        "http://jsonparsing.parseapp.com/jsonData/moviesDemoItem.txt");
+                        "http://jsonparsing.parseapp.com/jsonData/moviesDemoItem.txt"
+
+                );
             }
         });
 
@@ -77,6 +94,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                new ASyncTask2().execute(
+                        enterSearchURL.getText().toString()
+                );
             }
         });
 
@@ -85,17 +105,18 @@ public class MainActivity extends AppCompatActivity {
 //----------------------------------find String method---------------------------------------------
     /** Method Tested on repl.it   it works correctly **/
 
-    public void findString(String search, String buffer) {
+    public int findString(String search, String buffer) {
         int searchSize = search.length();
         int bufferSize = buffer.length();
-        int count = 0;
 
         for (int i = 0; i < (bufferSize - searchSize); i++) {
             if (buffer.substring(i,(i + searchSize)).equals(search)) {
                 count++;
+                stringPosition += (i + " ");
             }
 
         }
+        return count;
 
     }
 
@@ -235,13 +256,17 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+
+        Log.d("TAG", buffer.toString());
         return buffer.toString();
     }
 
     @Override
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
-
+        displayCount.setText(
+                findString(enterStringVal.getText().toString(), result)
+        );
     }
 
 
