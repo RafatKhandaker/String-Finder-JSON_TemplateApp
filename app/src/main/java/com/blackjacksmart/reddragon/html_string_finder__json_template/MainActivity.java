@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     TextView parseTextView;
     TextView searchURLText;
     TextView displayCount;
-    TextView locateString;
+    TextView rawHTMLData;
 
     Button hitButton;
     Button searchButton;
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         parseTextView = (TextView) findViewById(R.id.parse_text_view);
         searchURLText = (TextView) findViewById(R.id.enter_url_tv);
         displayCount = (TextView) findViewById(R.id.display_count_tv);
-        locateString = (TextView) findViewById(R.id.display_locate_tv);
+        rawHTMLData = (TextView) findViewById(R.id.display_locate_tv);
 
         hitButton = (Button) findViewById(R.id.btnHit);
         searchButton = (Button) findViewById(R.id.search_btn);
@@ -83,7 +83,8 @@ public class MainActivity extends AppCompatActivity {
         hitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new ASyncTask1().execute(
+                ASyncTask1 async1 = new ASyncTask1();
+                 async1.execute(
                         "http://jsonparsing.parseapp.com/jsonData/moviesDemoItem.txt"
                 );
             }
@@ -92,7 +93,8 @@ public class MainActivity extends AppCompatActivity {
         searchButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                new ASyncTask2().execute(
+                ASyncTask2 async2 = new ASyncTask2();
+                async2.execute(
                         enterSearchURL.getText().toString()
                 );
             }
@@ -262,9 +264,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
-        displayCount.setText(
-                findString(enterStringVal.getText().toString(), result)
-        );
+        String searchTxt = enterStringVal.getText().toString();
+//        displayCount.setText(
+//                findString(searchTxt,result)
+//        );
+        rawHTMLData.setText(result);
     }
 
 
