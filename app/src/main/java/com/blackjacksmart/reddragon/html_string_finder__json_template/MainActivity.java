@@ -269,7 +269,7 @@ public class MainActivity extends AppCompatActivity {
         int stringCount = findString(searchTxt, result);
 
         displayCount.setText(String.valueOf(stringCount));
-        rawHTMLData.setText(result);gi
+        rawHTMLData.setText(result);
     }
 
 
