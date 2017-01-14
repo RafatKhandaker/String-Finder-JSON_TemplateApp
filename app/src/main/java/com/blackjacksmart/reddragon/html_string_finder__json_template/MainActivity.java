@@ -163,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
 //-----------------------------------find String method---------------------------------------------
     /** Method Tested on repl.it   it works correctly **/
 
-    public int findString(String search, String buffer) {
+    protected int findString(String search, String buffer) {
         count = 0;
         int searchSize = search.length();
         int bufferSize = buffer.length();
@@ -181,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
 
 //--------------------------ASYNC TASK Running to pull and parse JSON Data -------------------------
 
-    public class ASyncTask1 extends AsyncTask<String, String, String> {
+    private class ASyncTask1 extends AsyncTask<String, String, String> {
 
         private StringBuffer buffer;
         private String finalJson;
@@ -272,7 +272,7 @@ public class MainActivity extends AppCompatActivity {
     }
 //--------------------------------------------------------------------------------------------------
 
-    public class ASyncTask2 extends AsyncTask<String, String, String> {
+    private class ASyncTask2 extends AsyncTask<String, String, String> {
 
     private StringBuffer buffer;
 
