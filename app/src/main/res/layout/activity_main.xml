@@ -126,6 +126,7 @@
         android:textAlignment="center"
         android:id="@+id/display_locate_tv"
         android:layout_below="@+id/count_tv"
+        android:scrollbars="vertical"
         android:scrollbarAlwaysDrawVerticalTrack="true"
         android:layout_gravity="center_horizontal"/>
     <Button

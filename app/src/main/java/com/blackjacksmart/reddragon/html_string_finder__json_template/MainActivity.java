@@ -1,9 +1,10 @@
 package com.blackjacksmart.reddragon.html_string_finder__json_template;
 
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +23,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 /**                             LEARNING OBJECTIVE:
+ * --CREATED BY RAFAT KHANDAKER --
  *
  Manually pulling http data from a server: creating and handling the connection;
  retrieving, buffering and reading the input stream line by line and pulling to view;
@@ -77,8 +79,7 @@ public class MainActivity extends AppCompatActivity {
         enterSearchURL = (EditText) findViewById(R.id.enter_url_et);
         enterStringVal =(EditText) findViewById(R.id.enter_string_et);
 
-
-//        findString("test","this is a test buffer test test test");
+        rawHTMLData.setMovementMethod(new ScrollingMovementMethod());
 
         hitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,10 +94,27 @@ public class MainActivity extends AppCompatActivity {
         searchButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                Thread thread = new Thread();
                 ASyncTask2 async2 = new ASyncTask2();
-                async2.execute(
-                        enterSearchURL.getText().toString()
-                );
+
+                count = 0;
+
+                if(!enterSearchURL.getText().equals("")) {
+                    async2.execute(
+                            enterSearchURL.getText().toString()
+                    );
+                }else {
+                    enterSearchURL.setTextColor(Color.RED);
+                    enterSearchURL.setText("Value cannot be null");
+                    searchButton.setClickable(false);
+                    try {
+                        thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    searchButton.setClickable(true);
+                }
+
             }
         });
 
@@ -106,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
     /** Method Tested on repl.it   it works correctly **/
 
     public int findString(String search, String buffer) {
+        count = 0;
         int searchSize = search.length();
         int bufferSize = buffer.length();
 
@@ -219,6 +238,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected String doInBackground(String... params) {
+
         HttpURLConnection connection = null;
         BufferedReader reader = null;
 
@@ -256,14 +276,21 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-
-        Log.d("TAG", buffer.toString());
-        return buffer.toString();
+       if(buffer != null) {
+           return buffer.toString();
+       }
+        return "Null Value Call";
     }
 
     @Override
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
+
+        if(result.equals("Null Value Call")){
+            displayCount.setText("null");
+            rawHTMLData.setText(result);
+            return;
+        }
 
         String searchTxt = enterStringVal.getText().toString();
         int stringCount = findString(searchTxt, result);
