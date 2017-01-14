@@ -92,6 +92,41 @@
         android:layout_below="@+id/find_string_tv"
         android:layout_gravity="center_horizontal"/>
 
+    <TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="count: "
+    android:textAlignment="center"
+    android:textColor="@color/colorPrimary"
+    android:id="@+id/count_tv"
+    android:layout_below="@+id/enter_string_et"
+    android:layout_gravity="center_horizontal"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:id="@+id/display_count_tv"
+        android:layout_below="@+id/count_tv"
+        android:layout_gravity="center_horizontal"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="locate string: "
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:id="@+id/locate_string_tv"
+        android:layout_below="@+id/display_count_tv"
+        android:layout_gravity="center_horizontal"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:id="@+id/display_locate_tv"
+        android:layout_below="@+id/count_tv"
+        android:layout_gravity="center_horizontal"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -99,7 +134,7 @@
         android:layout_marginLeft="120dp"
         android:text="Search Button"
         android:gravity="center_horizontal"
-        android:layout_below="@+id/enter_string_et"
+        android:layout_below="@+id/display_locate_tv"
         />
 
 </LinearLayout>

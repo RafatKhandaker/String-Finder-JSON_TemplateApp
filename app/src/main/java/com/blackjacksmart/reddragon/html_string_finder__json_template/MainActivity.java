@@ -68,8 +68,15 @@ public class MainActivity extends AppCompatActivity {
         hitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new ASTask().execute(
+                new ASyncTask1().execute(
                         "http://jsonparsing.parseapp.com/jsonData/moviesDemoItem.txt");
+            }
+        });
+
+        searchButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
             }
         });
 
@@ -94,12 +101,10 @@ public class MainActivity extends AppCompatActivity {
 
 //--------------------------ASYNC TASK Running to pull and parse JSON Data -------------------------
 
-    public class ASTask extends AsyncTask<String, String, String> {
+    public class ASyncTask1 extends AsyncTask<String, String, String> {
 
         private StringBuffer buffer;
         private String finalJson;
-
-        public ASTask(){}
 
         @Override
         protected String doInBackground(String... params) {
@@ -187,6 +192,60 @@ public class MainActivity extends AppCompatActivity {
     }
 //--------------------------------------------------------------------------------------------------
 
+    public class ASyncTask2 extends AsyncTask<String, String, String> {
+
+    private StringBuffer buffer;
+
+    @Override
+    protected String doInBackground(String... params) {
+        HttpURLConnection connection = null;
+        BufferedReader reader = null;
+
+        try {
+            URL url = new URL(params[0]);
+            connection = (HttpURLConnection) url.openConnection();
+            connection.connect();
+
+            InputStream stream = connection.getInputStream();
+
+            reader = new BufferedReader(new InputStreamReader(stream));
+            buffer = new StringBuffer();
+
+            String line = "";
+
+            while ((line = reader.readLine()) != null) {
+                buffer.append(line);
+            }
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (connection != null) {
+                connection.disconnect();
+            }
+
+            try {
+                if (reader != null) {
+                    reader.close();
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return buffer.toString();
+    }
+
+    @Override
+    protected void onPostExecute(String result) {
+        super.onPostExecute(result);
+
+    }
+
+
+}
 }
 
 
